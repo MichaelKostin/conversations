@@ -1,0 +1,150 @@
+@base-color: #27ae60;
+@base-font: 'Helvetica', sans-serif;
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: @base-font;
+}
+body, html {
+  height: 100%;
+  //font-family: @base-font;
+  color: #333333;
+  background: #f7f7f7;
+}
+header {
+  background: @base-color;
+  height: 40px;
+  padding: 10px;
+
+  nav {
+
+    a {
+      text-decoration: none;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 14px;
+      display: inline-block;
+      line-height: 40px;
+
+      & + a {
+        margin-left: 20px;
+      }
+    }
+  }
+
+  h1 {
+    color: #fff;
+  }
+
+}
+aside {
+  width: 600px;
+  height: 410px;
+  margin: 20px auto;
+  background: #fff;
+  position: relative;
+  border: 2px solid @base-color;
+  border-radius: 3px;
+  color: #666;
+
+  header {
+    height: 40px;
+    width: 100%;
+    color: #fff;
+    font-weight: 400;
+    box-sizing: border-box;
+    padding-left: 10px;
+    position: relative;
+
+    h2 {
+      font-size: 18px;
+    }
+
+    .close {
+      background: url("../img/Delete-30.png") no-repeat;
+      height: 30px;
+      width: 30px;
+      position: absolute;
+      right: 5px;
+      top: 4px;
+    }
+  }
+
+  .content {
+    padding: 10px 0 10px 0;
+    color: @base-color;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+    height: 280px;
+
+    p {
+      background: #f4f4f4;
+      padding: 10px;
+      border: 2px solid #f4f4f4;
+
+      &+p {
+        margin-top: 10px;
+      }
+
+      &.right-align {
+        margin-right: 20%;
+
+        border-radius: 0 5px 5px 0;
+      }
+
+      &.left-align {
+        margin-left: 20%;
+        border-radius: 5px 0 0 5px;
+      }
+    }
+  }
+
+  .area {
+    padding: 10px 75px 10px 10px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 90px;
+    position: relative;
+
+    textarea {
+      resize: none;
+      display: block;
+      border-radius: 3px;
+      border: 1px solid @base-color;
+      outline: none;
+      box-sizing: border-box;
+      height: 100%;
+      padding: 10px;
+      color: @base-color;
+      width: 100%;
+      //font-family: 'Helvetica', sans-serif;
+      font-size: 14px;
+    }
+
+    button {
+      outline: none;
+      background: #fff;
+      border: 1px solid @base-color;
+      color: @base-color;
+      padding: 10px;
+      margin: 0 10px 10px 10px;
+      font-size: 14px;
+      border-radius: 5px;
+      right: 0;
+      top: 10px;
+      position: absolute;
+
+      &:hover {
+        background: @base-color;
+        color: #fff;
+      }
+      &:active {
+        background: lighten(@base-color, 10%);
+      }
+
+    }
+  }
+}
