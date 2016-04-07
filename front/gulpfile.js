@@ -14,50 +14,49 @@ const cssmin = require('gulp-cssmin');
 
 gulp.task('js', ()=> {
     return browserify({
-        entries: ['src/app/main.js'],
-        debug: env === 'development'
+      entries: ['src/app/main.js'],
+      debug: env === 'development'
     })
-        .transform('babelify', { presets: ["es2015"] })
-        .bundle()
-        .on('error', handleErrors)
-        .pipe(source('main.js'))
-        .pipe(gulp.dest('./build/js'))
+      .transform('babelify', { presets: ["es2015"] })
+      .bundle()
+      .on('error', handleErrors)
+      .pipe(source('main.js'))
+      .pipe(gulp.dest('./build/js'))
+  }
+);
+
+gulp.task('less', ()=> {
+  return gulp.src('./src/css/*.less')
+    .pipe(gulpif(env === 'development', sourcemaps.init()))
+    .pipe(less())
+    .on('error', handleErrors)
+    .pipe(concat('main.css'))
+    .pipe(gulpif(env === 'development', cssmin()))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./build/css'));
 });
 
-gulp.task('less', function() {
-    return gulp.src('./src/css/*.less')
-        .pipe(gulpif(env === 'development', sourcemaps.init()))
-        .pipe(less())
-        .on('error', handleErrors)
-        .pipe(concat('main.css'))
-        .pipe(gulpif(env === 'development', cssmin()))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./build/css'));
+gulp.task('html', ()=> {
+  return gulp.src('./src/index.html')
+    .pipe(gulp.dest('./build'))
 });
 
-gulp.task('html', function() {
-    return gulp.src('./src/index.html')
-        .pipe(gulp.dest('./build'))
+gulp.task('default', (done)=> {
+  gulp.watch('./src/index.html', ['html']);
+  gulp.watch('./src/css/**/*.less', ['less']);
+  done();
 });
-
-gulp.task('default', function(done) {
-    gulp.watch('./src/index.html', ['html']);
-    gulp.watch('./src/css/**/*.less', ['less']);
-    done();
-});
-
-
 
 
 function handleErrors() {
-    const args = Array.prototype.slice.call(arguments);
-    notify
-        .onError({
-            title: '✖ Compile Error',
-            message: '<%= error.message %>'
-        })
-        .apply(this, args);
+  const args = Array.prototype.slice.call(arguments);
+  notify
+    .onError({
+      title: '✖ Compile Error',
+      message: '<%= error.message %>'
+    })
+    .apply(this, args);
 
-    console.error(args);
-    this.emit('end'); // Keep gulp from hanging on this task
+  console.error(args);
+  this.emit('end'); // Keep gulp from hanging on this task
 }

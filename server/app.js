@@ -9,11 +9,11 @@ const WebSocketServer = require('ws').Server;
 const wss = new WebSocketServer({ port: 3001 });
 
 wss.on('connection', function connection(ws) {
-    ws.on('message', function incoming(message) {
-        console.log('received: %s', message);
-    });
+  ws.on('message', function incoming(message) {
+    console.log('received: %s', message);
+  });
 
-    ws.send('something');
+  ws.send('something');
 });
 
 app.use(morgan('dev'));
@@ -22,11 +22,11 @@ app.use(bodyParser.json());
 // for parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', express.static(__dirname + config.static));
-app.get('/api', function (req, res) {
-    res.status(200).send( 'Hello World!');
+app.get('/api', function(req, res) {
+  res.status(200).send('Hello World!');
 });
 
-app.listen(config.port, function () {
-    console.log('Magic is happening on port 3000!');
+app.listen(config.port, function() {
+  console.log('Magic is happening on port 3000!');
 });
 
