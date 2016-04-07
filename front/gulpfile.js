@@ -9,8 +9,11 @@ const browserify = require('browserify');
 const babelify = require('babelify');
 const source = require('vinyl-source-stream');
 const notify = require('gulp-notify');
-const env = process.env.NODE_ENV || 'development';
 const cssmin = require('gulp-cssmin');
+const livereload = require('gulp-livereload');
+
+const env = process.env.NODE_ENV || 'development';
+
 
 gulp.task('js', ()=> {
     return browserify({
@@ -22,6 +25,7 @@ gulp.task('js', ()=> {
       .on('error', handleErrors)
       .pipe(source('main.js'))
       .pipe(gulp.dest('./build/js'))
+      .pipe(livereload());
   }
 );
 
@@ -33,20 +37,22 @@ gulp.task('less', ()=> {
     .pipe(concat('main.css'))
     .pipe(gulpif(env === 'development', cssmin()))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./build/css'));
+    .pipe(gulp.dest('./build/css'))
+    .pipe(livereload());
 });
 
 gulp.task('html', ()=> {
   return gulp.src('./src/index.html')
     .pipe(gulp.dest('./build'))
+    .pipe(livereload());
 });
 
 gulp.task('default', (done)=> {
+  livereload.listen();
   gulp.watch('./src/index.html', ['html']);
   gulp.watch('./src/css/**/*.less', ['less']);
   done();
 });
-
 
 function handleErrors() {
   const args = Array.prototype.slice.call(arguments);
