@@ -16,16 +16,16 @@ const env = process.env.NODE_ENV || 'development';
 
 
 gulp.task('js', ()=> {
-    return browserify({
-      entries: ['src/app/main.js'],
-      debug: env === 'development'
-    })
-      .transform('babelify', { presets: ["es2015"] })
-      .bundle()
-      .on('error', handleErrors)
-      .pipe(source('main.js'))
-      .pipe(gulp.dest('./build/js'))
-      .pipe(livereload());
+  return browserify({
+    entries: ['src/app/main.js'],
+    debug: env === 'development'
+  })
+    .transform('babelify', { presets: ["es2015"] })
+    .bundle()
+    .on('error', handleErrors)
+    .pipe(source('main.js'))
+    .pipe(gulp.dest('./build/js'))
+    .pipe(livereload());
   }
 );
 
@@ -47,15 +47,14 @@ gulp.task('html', ()=> {
     .pipe(livereload());
 });
 
-gulp.task('default', (done)=> {
+gulp.task('default', ['html', 'less', 'js'], (done)=> {
   livereload.listen();
   gulp.watch('./src/index.html', ['html']);
   gulp.watch('./src/css/**/*.less', ['less']);
   done();
 });
 
-function handleErrors() {
-  const args = Array.prototype.slice.call(arguments);
+function handleErrors(...args) {
   notify
     .onError({
       title: '✖ Compile Error',
