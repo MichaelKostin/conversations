@@ -54,7 +54,9 @@ gulp.task('default', ['html', 'less', 'js'], (done)=> {
   done();
 });
 
-function handleErrors(...args) {
+//TODO: Check it
+function handleErrors() {
+  const args = Array.prototype.slice.call(arguments);
   notify
     .onError({
       title: '✖ Compile Error',
