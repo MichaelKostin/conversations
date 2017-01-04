@@ -1,10 +1,12 @@
 {
   "development": {
-    "port": 3000,
+    "port": 3002,
+    "wsPort": 3003,
     "static": "./../front/build"
   },
   "production": {
     "port": 80,
+    "wsPort": 3003,
     "static": "./../front/build"
   }
 }
