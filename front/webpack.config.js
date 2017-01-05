@@ -3,7 +3,7 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = {
+let config = {
     entry: {
         main: __dirname + '/src'
     },
@@ -48,3 +48,16 @@ module.exports = {
         headers: { "X-Server": "webpack" }
     }
 };
+
+if (process.env.NODE_ENV === 'production') {
+    //Remove sourcemap and add minification
+    config.devtool = false;
+    config.plugins.push(
+        new webpack.optimize.UglifyJsPlugin({
+            compress: { warnings: false }
+        })
+    );
+
+}
+
+module.exports = config;
