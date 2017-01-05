@@ -9,7 +9,6 @@
 }
 body, html {
   height: 100%;
-  //font-family: @base-font;
   color: #333333;
   background: #f7f7f7;
 }
@@ -18,26 +17,16 @@ header {
   height: 40px;
   padding: 10px;
 
-  nav {
+  h2 {
+    line-height: 30px;
+    margin-left: 10px;
 
     a {
       text-decoration: none;
       color: #fff;
-      text-transform: uppercase;
-      font-size: 14px;
-      display: inline-block;
       line-height: 40px;
-
-      & + a {
-        margin-left: 20px;
-      }
     }
   }
-
-  h1 {
-    color: #fff;
-  }
-
 }
 aside {
   width: 600px;
@@ -102,6 +91,8 @@ aside {
         border-radius: 5px 0 0 5px;
       }
     }
+
+
   }
 
   .area {
@@ -147,6 +138,123 @@ aside {
         background: lighten(@base-color, 10%);
       }
 
+    }
+  }
+}
+
+.content {
+  position: relative;
+}
+
+.not-found {
+  margin: 50px auto;
+  width: 400px;
+  height: 150px;
+  border-radius: 3px;
+  padding: 20px;
+  background: @base-color;
+
+  h1 {
+    margin-bottom: 15px;
+  }
+}
+
+.nickname-form {
+  margin: 50px auto;
+  width: 400px;
+  border-radius: 3px;
+  border: 2px solid @base-color;
+  padding-bottom: 20px;
+
+
+  h3 {
+    margin-bottom: 20px;
+    background: @base-color;
+    padding: 20px;
+  }
+
+  form {
+    text-align: center;
+
+    input {
+      border: 2px solid @base-color;
+      outline: none;
+      border-radius: 3px;
+      height: 44px;
+      padding: 5px 10px;
+      display: inline-block;
+      color: @base-color;
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0 auto 20px auto;
+      width: 60%;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    button {
+      display: inline-block;
+      background: @base-color;
+      outline: none;
+      border-radius: 3px;
+      border: 2px solid @base-color;
+      height: 44px;
+      text-align: center;
+      vertical-align: middle;
+      color: #fff;
+      width: 60%;
+      font-size: 16px;
+      font-weight: 700;
+
+      &:active {
+        background: #fff;
+        color: @base-color;
+      }
+    }
+
+  }
+}
+
+.active-users {
+  margin: 50px auto;
+  width: 400px;
+  border-radius: 3px;
+  border: 2px solid @base-color;
+
+  h3 {
+    margin-bottom: 20px;
+    background: @base-color;
+    padding: 20px;
+  }
+
+  ul {
+    margin: 20px;
+
+    li {
+      list-style-type: none;
+      color: @base-color;
+      padding: 10px 0;
+    }
+  }
+}
+
+.user-ico {
+  border-radius: 3px;
+  border: 2px solid @base-color;
+  display: inline-block;
+  position: absolute;
+
+  right: 2px;
+  top: -46px;
+
+  span {
+    display: inline-block;
+    padding: 2px 4px;
+    color: @base-color;
+
+    &.nickname {
+      background: @base-color;
+      color: #fff;
     }
   }
 }
