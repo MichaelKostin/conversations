@@ -7,23 +7,9 @@ const ENV = process.env.NODE_ENV || 'development';
 const config = require('./config/config.json')[ENV];
 const app = express();
 const WebSocketServer = require('ws').Server;
-const wss = new WebSocketServer({ port: config.wsPort });
+const webSocketServer = new WebSocketServer({ port: config.wsPort });
 
-wss.broadcast = function (data) {
-  for (let i in this.clients) {
-    this.clients[i].send(data);
-  }
-};
-
-
-wss.on('connection', function connection(ws) {
-  ws.on('message', function(message) {
-    console.log('received: %s', message);
-    wss.broadcast(message);
-  });
-
-  ws.send('you are connected');
-});
+require('./services/websocket.service')(webSocketServer);
 
 app.use(morgan('dev'));
 // for parsing application/json

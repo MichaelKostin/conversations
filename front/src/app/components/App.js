@@ -9,19 +9,36 @@ const Header = ()=> (
     </header>
 );
 
-const App = ({ children, errors })=> (
+const Error = ({errorMessage, removeError}) => {
+    setTimeout(() => {
+        removeError(errorMessage);
+    }, 3000);
+
+    return (
+        <div className="error">
+            <h3>Error</h3>
+            <p>{errorMessage}</p>
+        </div>
+    );
+};
+
+const App = ({ children, errors, removeError })=> (
       <div>
         <Header/>
         <div className="content">
           { children }
         </div>
         <footer>
+            {errors.map((error)=> (
+                <Error key={error} removeError={removeError} errorMessage={error} />
+            ))}
         </footer>
       </div>
 );
 
 App.PropTypes =  {
-  children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
+    errors: PropTypes.array.isRequired
 };
 
 export default App;

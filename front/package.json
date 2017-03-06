@@ -4,7 +4,7 @@
   "description": "chat for scure conversations. front side",
   "main": "main.js",
   "scripts": {
-    "start": "node_modules/.bin/webpack-dev-server --inline --hot",
+    "start": "node_modules/.bin/webpack-dev-server --inline --hot --watch-poll",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Michael Kostin",

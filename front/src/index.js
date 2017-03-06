@@ -9,9 +9,11 @@ import { useRouterHistory } from 'react-router';
 import { createHashHistory } from 'history';
 import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore from './app/store/configureStore';
+import { connectWithRedux } from './app/actions/websocketActions';
 
-const appHistory = useRouterHistory(createHashHistory)();
 const store = configureStore();
+connectWithRedux(store.dispatch);
+const appHistory = useRouterHistory(createHashHistory)();
 const history = syncHistoryWithStore(appHistory, store);
 
 

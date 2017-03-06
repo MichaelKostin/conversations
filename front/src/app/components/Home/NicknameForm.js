@@ -6,10 +6,12 @@ const NicknameForm = ({submitNickname})=> {
     let input ;
     const submit = (e) => {
         e.preventDefault();
-        submitNickname(input.value);
+        if (input.value.trim()) {
+            submitNickname(input.value);
+        }
     };
     return (
-        <div className="nickname-form">
+        <div className=" window nickname-form">
             <h3>Enter your nickname</h3>
             <form onSubmit={submit}>
                 <input

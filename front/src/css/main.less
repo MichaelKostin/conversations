@@ -11,6 +11,7 @@ body, html {
   height: 100%;
   color: #333333;
   background: #f7f7f7;
+  position: relative;
 }
 header {
   background: @base-color;
@@ -69,30 +70,6 @@ aside {
     box-sizing: border-box;
     overflow: auto;
     height: 280px;
-
-    p {
-      background: #f4f4f4;
-      padding: 10px;
-      border: 2px solid #f4f4f4;
-      color: @base-color;
-
-      &+p {
-        margin-top: 10px;
-      }
-
-      &.right-align {
-        margin-right: 20%;
-
-        border-radius: 0 5px 5px 0;
-      }
-
-      &.left-align {
-        margin-left: 20%;
-        border-radius: 5px 0 0 5px;
-      }
-    }
-
-
   }
 
   .area {
@@ -146,6 +123,20 @@ aside {
   position: relative;
 }
 
+.window {
+  margin: 50px auto;
+  width: 400px;
+  border-radius: 3px;
+  border: 2px solid @base-color;
+  background: #fff;
+
+  h3 {
+    margin-bottom: 20px;
+    background: @base-color;
+    padding: 20px;
+  }
+}
+
 .not-found {
   margin: 50px auto;
   width: 400px;
@@ -160,18 +151,7 @@ aside {
 }
 
 .nickname-form {
-  margin: 50px auto;
-  width: 400px;
-  border-radius: 3px;
-  border: 2px solid @base-color;
   padding-bottom: 20px;
-
-
-  h3 {
-    margin-bottom: 20px;
-    background: @base-color;
-    padding: 20px;
-  }
 
   form {
     text-align: center;
@@ -216,24 +196,169 @@ aside {
 }
 
 .active-users {
-  margin: 50px auto;
-  width: 400px;
-  border-radius: 3px;
-  border: 2px solid @base-color;
+  position: absolute;
+  left: 100%;
+  top: 0;
 
-  h3 {
-    margin-bottom: 20px;
-    background: @base-color;
-    padding: 20px;
+  h4 {
+    color: @base-color;
+    text-align: center;
+    margin: 22px 0;
   }
-
   ul {
     margin: 20px;
+    width: 270px;
+    max-height: 360px;
+    overflow: auto;
 
     li {
       list-style-type: none;
+      border: 2px solid @base-color;
+      display: inline-block;
+      width: 250px;
+      border-radius: 3px;
+      font-size: 0;
+      vertical-align: bottom;
+
+      &+li {
+        margin-top: 10px;
+      }
+
+      div {
+        display: inline-block;
+        font-size: 16px;
+        color: @base-color;
+        width: 192px;
+        padding: 2px 0 2px 4px;
+
+        &.buttons {
+          width: 54px;
+          padding: 0;
+
+          button {
+            border: none;
+            outline: none;
+            font-size: 15px;
+            background: @base-color;
+            display: inline-block;
+            height: 23px;
+            width: 27px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+.chat-window {
+  width: 500px;
+  height: 510px;
+  position: relative;
+
+  .members {
+    font-size: 0;
+    margin-top: -20px;
+    border-bottom: 2px solid @base-color;
+    margin-bottom: 10px;
+    height: 20px;
+
+    p, strong {
       color: @base-color;
-      padding: 10px 0;
+    }
+
+    p {
+      width: 50%;
+      font-size: 16px;
+      display: inline-block;
+      text-align: center;
+      line-height: 20px;
+      box-sizing: border-box;
+
+      &:first-child {
+        border-right: 2px solid @base-color;
+      }
+    }
+  }
+
+  .messages {
+    margin-bottom: 10px;
+    height: 315px;
+    overflow-y: scroll;
+    p {
+      background: #f0f0f0;
+      padding: 10px;
+      border: 2px solid #f0f0f0;
+      color: @base-color;
+
+      &+p {
+        margin-top: 10px;
+      }
+
+      &.right-align {
+        margin-right: 20%;
+
+        border-radius: 0 5px 5px 0;
+      }
+
+      &.left-align {
+        margin-left: 20%;
+        border-radius: 5px 0 0 5px;
+        position: relative;
+
+        span {
+          position: absolute;
+          display: inline-block;
+          font-weight: 700;
+          left: -60px;
+          width: 20%;
+          color: @base-color;
+        }
+      }
+    }
+  }
+
+  form {
+    padding: 10px 75px 10px 10px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 90px;
+    position: relative;
+
+    textarea {
+      resize: none;
+      display: block;
+      border-radius: 3px;
+      border: 2px solid @base-color;
+      outline: none;
+      box-sizing: border-box;
+      height: 100%;
+      padding: 10px;
+      color: @base-color;
+      width: 100%;
+      font-size: 14px;
+    }
+
+    button {
+      outline: none;
+      background: #fff;
+      border: 2px solid @base-color;
+      color: @base-color;
+      padding: 10px;
+      margin: 0 10px 10px 10px;
+      font-size: 14px;
+      border-radius: 5px;
+      right: 0;
+      top: 10px;
+      position: absolute;
+
+      &:hover {
+        background: @base-color;
+        color: #fff;
+      }
+      &:active {
+        background: lighten(@base-color, 10%);
+      }
     }
   }
 }
@@ -244,8 +369,8 @@ aside {
   display: inline-block;
   position: absolute;
 
-  right: 2px;
-  top: -46px;
+  right: 6px;
+  top: -44px;
 
   span {
     display: inline-block;
@@ -255,6 +380,23 @@ aside {
     &.nickname {
       background: @base-color;
       color: #fff;
+    }
+  }
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+
+  .error {
+    background: red;
+    padding: 20px;
+    width: 350px;
+    margin: 10px;
+    border-radius: 3px;
+
+    h3 {
+      margin-bottom: 10px;
     }
   }
 }

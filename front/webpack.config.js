@@ -41,7 +41,7 @@ let config = {
     ],
     devServer: {
         host: 'localhost',
-        port: 8080,
+        port: 3007,
         proxy: {
             '*': 'http://localhost:3002'
         },
